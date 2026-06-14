@@ -31,8 +31,9 @@ document.querySelector("#app").innerHTML = `
     <main>
       <section class="hero">
         <div class="eyebrow">MIDNIGHT MAINNET · LIVE VALIDATORS</div>
-        <h1>The organizations<br><em>securing Midnight.</em></h1>
-        <p class="hero-copy">A live, hourly view of Midnight's federated validator network.</p>
+        <h1>The Validators that<br><em>Secure Midnight.</em></h1>
+        <p class="hero-subheadline">Federated today, decentralization is next.</p>
+        <p class="hero-copy">A live, hourly view of the Midnight network.</p>
       </section>
 
       <section class="map-section" aria-label="Validator globe">
@@ -250,15 +251,15 @@ function initGlobe() {
     height: size,
     phi: state.phi,
     theta: state.theta,
-    dark: 1,
-    diffuse: 1.6,
+    dark: 0,
+    diffuse: 1.1,
     scale: state.scale,
     mapSamples: 38_000,
-    mapBrightness: 26,
-    mapBaseBrightness: 0.16,
-    baseColor: [0.012, 0.014, 0.022],
+    mapBrightness: 2.4,
+    mapBaseBrightness: 0.02,
+    baseColor: [1, 1, 1],
     markerColor: [0.2, 0.55, 1],
-    glowColor: [0.08, 0.2, 0.48],
+    glowColor: [0.82, 0.86, 0.94],
     markers,
     arcs,
     arcColor: [0.18, 0.4, 0.95],
