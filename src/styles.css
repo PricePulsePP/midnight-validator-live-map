@@ -39,9 +39,10 @@ h1 em { font-style: normal; color: #6e737e; }
 .hero-copy { color: #8b9099; font-size: 14px; }
 
 .map-section {
-  display: grid; place-items: center; min-height: 820px; padding: 0 28px 45px;
+  display: grid; grid-template-columns: minmax(200px, 245px) minmax(600px, 820px) minmax(200px, 245px);
+  gap: 18px; align-items: center; justify-content: center; min-height: 820px; padding: 0 28px 45px;
 }
-.globe-stage { position: relative; display: grid; place-items: center; width: min(960px, 92vw); }
+.globe-stage { position: relative; display: grid; place-items: center; width: 100%; min-width: 0; }
 #globe { position: relative; z-index: 1; width: 100%; max-width: 820px; aspect-ratio: 1; cursor: grab; touch-action: none; }
 #globe:active { cursor: grabbing; }
 .globe-halo { position: absolute; width: 76%; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 0 180px #135aff55; }
@@ -84,6 +85,24 @@ h1 em { font-style: normal; color: #6e737e; }
 .globe-controls button:hover { border-color: #6f91e9; color: white; }
 .globe-caption { color: #656b77; font: 9px "Space Mono"; letter-spacing: .08em; text-transform: uppercase; }
 .globe-caption span { display: inline-block; width: 18px; height: 1px; background: #2d6dff; vertical-align: middle; margin-right: 7px; }
+.validator-rail { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 7; }
+.rail-left .validator-card { margin-left: auto; text-align: right; flex-direction: row-reverse; }
+.validator-card {
+  width: min(100%, 245px); min-height: 57px; border: 1px solid #ffffff18;
+  background: linear-gradient(135deg, #121319ed, #090a0ded); border-radius: 13px;
+  display: flex; align-items: center; gap: 10px; padding: 8px 10px; cursor: pointer;
+  transition: border-color .2s, transform .2s, background .2s, box-shadow .2s; text-align: left;
+}
+.validator-card:hover, .validator-card:focus-visible, .validator-card.selected {
+  border-color: #ffffff66; background: #171a22; transform: translateY(-1px); box-shadow: 0 0 24px #245fd522;
+}
+.validator-card.offline { opacity: .48; }
+.validator-copy { min-width: 0; flex: 1; }
+.validator-copy strong, .validator-copy small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.validator-copy strong { font-size: 11px; font-weight: 600; }
+.validator-copy small { margin-top: 4px; color: #858d9b; font: 8px "Space Mono"; text-transform: uppercase; }
+.status-dot { flex: 0 0 auto; width: 5px; height: 5px; background: #55f5b3; border-radius: 50%; box-shadow: 0 0 7px #55f5b3; }
+.status-dot.offline { background: #777; box-shadow: none; }
 .logo-wrap {
   flex: 0 0 auto; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px;
   background: #fff; box-shadow: 0 0 18px color-mix(in srgb, var(--accent), transparent 55%); overflow: hidden;
@@ -118,15 +137,24 @@ footer { border-top: 1px solid #ffffff14; margin: 0 28px; padding: 24px 0 38px; 
 footer a { color: #9ba4b5; text-decoration: none; }
 
 @media (max-width: 1050px) {
-  .map-section { min-height: 720px; }
+  .map-section { grid-template-columns: 1fr 1fr; min-height: 720px; }
+  .globe-stage { grid-column: 1 / -1; grid-row: 1; width: min(820px, 100%); justify-self: center; }
+  .validator-rail { display: grid; grid-template-columns: repeat(3, 1fr); align-self: start; }
+  .rail-left { grid-column: 1; }
+  .rail-right { grid-column: 2; }
+  .validator-card, .rail-left .validator-card { width: 100%; margin: 0; text-align: left; flex-direction: row; }
+  .status-dot { display: none; }
   .stats { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 680px) {
   .topbar { height: 64px; }
   .hero { padding-top: 45px; }
-  .map-section { min-height: 530px; padding: 0 0 40px; }
-  .globe-stage { width: 125vw; }
+  .map-section { display: flex; flex-direction: column; min-height: auto; padding: 0 14px 40px; }
+  .globe-stage { width: 125vw; order: 0; }
+  .validator-rail { order: 1; width: 100%; grid-template-columns: repeat(2, 1fr); }
+  .validator-card { min-height: 52px; }
+  .validator-card .logo-wrap { width: 32px; height: 32px; }
   .map-logo-image { width: 35px; height: 35px; border-radius: 10px; }
   .map-logo.selected .map-logo-label { display: none; }
   .globe-controls { right: 22%; bottom: 5%; }

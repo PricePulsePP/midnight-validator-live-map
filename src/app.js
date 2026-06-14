@@ -36,6 +36,7 @@ document.querySelector("#app").innerHTML = `
       </section>
 
       <section class="map-section" aria-label="Validator globe">
+        <div class="validator-rail rail-left" id="rail-left"></div>
         <div class="globe-stage">
           <div class="globe-halo"></div>
           <div class="globe-grid" aria-hidden="true"></div>
@@ -48,6 +49,7 @@ document.querySelector("#app").innerHTML = `
           </div>
           <div class="globe-caption"><span></span> Drag to pan · Scroll or pinch to zoom · Select a logo</div>
         </div>
+        <div class="validator-rail rail-right" id="rail-right"></div>
       </section>
 
       <section class="stats" id="stats"></section>
@@ -70,6 +72,8 @@ document.querySelector("#app").innerHTML = `
 
 const canvas = document.querySelector("#globe");
 const globeLabels = document.querySelector("#globe-labels");
+const railLeft = document.querySelector("#rail-left");
+const railRight = document.querySelector("#rail-right");
 const detailsCard = document.querySelector("#details-card");
 const detailsHeading = document.querySelector("#details-heading");
 
@@ -95,7 +99,10 @@ async function loadSnapshot() {
 
 function render() {
   const validators = state.snapshot.validators;
+  const split = Math.ceil(validators.length / 2);
   globeLabels.innerHTML = validators.map(mapLogoButton).join("");
+  railLeft.innerHTML = validators.slice(0, split).map(validatorButton).join("");
+  railRight.innerHTML = validators.slice(split).map(validatorButton).join("");
 
   const online = validators.filter((node) => node.online);
   const organizations = new Set(validators.map((node) => node.organization));
@@ -136,6 +143,21 @@ function mapLogoButton(node, index, validators) {
     >
       <span class="map-logo-image"><img src="./assets/logos/${escapeHtml(node.logo)}" alt=""></span>
       <span class="map-logo-label"><strong>${escapeHtml(node.organization)}</strong><small>${escapeHtml(node.secondary ?? node.city)}</small></span>
+    </button>
+  `;
+}
+
+function validatorButton(node) {
+  return `
+    <button class="validator-card ${node.online ? "" : "offline"}" data-name="${escapeHtml(node.name)}" type="button">
+      <span class="logo-wrap" style="--accent:${node.accent}">
+        <img src="./assets/logos/${escapeHtml(node.logo)}" alt="">
+      </span>
+      <span class="validator-copy">
+        <strong>${escapeHtml(node.organization)}</strong>
+        <small>${escapeHtml(node.secondary ?? node.city)}</small>
+      </span>
+      <span class="status-dot ${node.online ? "" : "offline"}"></span>
     </button>
   `;
 }
@@ -229,12 +251,12 @@ function initGlobe() {
     phi: state.phi,
     theta: state.theta,
     dark: 1,
-    diffuse: 1.25,
+    diffuse: 1.6,
     scale: state.scale,
-    mapSamples: 30_000,
-    mapBrightness: 8,
-    mapBaseBrightness: 0.08,
-    baseColor: [0.018, 0.025, 0.055],
+    mapSamples: 38_000,
+    mapBrightness: 26,
+    mapBaseBrightness: 0.16,
+    baseColor: [0.012, 0.014, 0.022],
     markerColor: [0.2, 0.55, 1],
     glowColor: [0.08, 0.2, 0.48],
     markers,
