@@ -43,8 +43,7 @@ export const VALIDATOR_MANIFEST = {
     organization: "Google Cloud",
     logo: "google-cloud.svg",
     accent: "#4285f4",
-    priority: 0,
-    featured: true
+    priority: 4
   },
   "sfi-validator-moneygram": {
     organization: "MoneyGram",
