@@ -22,7 +22,7 @@ document.querySelector("#app").innerHTML = `
   <div class="page-shell">
     <header class="topbar">
       <a class="brand" href="./" aria-label="Midnight Validator Live Map">
-        <span class="brand-mark">M</span>
+        <span class="brand-mark"><img src="./assets/midnight-mark.svg" alt=""></span>
         <span><strong>MIDNIGHT</strong><small>VALIDATOR LIVE MAP</small></span>
       </a>
       <div class="live-state"><span class="pulse"></span><span id="live-label">Loading telemetry</span></div>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.8" fill="#080808"/>
+    </pattern>
+    <radialGradient id="fade" cx="36%" cy="34%" r="68%">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".62" stop-color="#fff" stop-opacity=".12"/>
+      <stop offset=".84" stop-color="#fff" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#fff"/>
+    </radialGradient>
+    <radialGradient id="blue" cx="78%" cy="50%" r="42%">
+      <stop offset="0" stop-color="#dce7ff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#2456a8" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="#fff"/>
+  <rect width="1200" height="630" fill="url(#blue)"/>
+  <g transform="translate(64 38)">
+    <circle cx="25" cy="25" r="24" fill="#fff" stroke="#111"/>
+    <circle cx="25" cy="25" r="16" fill="none" stroke="#050505" stroke-width="2.8"/>
+    <rect x="23.3" y="12" width="3.4" height="3.4" fill="#050505"/>
+    <rect x="23.3" y="17.2" width="3.4" height="3.4" fill="#050505"/>
+    <rect x="23.3" y="22.4" width="3.4" height="3.4" fill="#050505"/>
+    <text x="66" y="31" fill="#080808" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" letter-spacing="2.5">MIDNIGHT VALIDATOR LIVE MAP</text>
+  </g>
+  <g transform="translate(1010 54)">
+    <circle cx="0" cy="-4" r="4" fill="#16a36b"/>
+    <text x="14" y="0" fill="#454b53" font-family="monospace" font-size="12" letter-spacing="1.4">LIVE · HOURLY</text>
+  </g>
+  <g transform="translate(64 150)">
+    <text fill="#3159ad" font-family="monospace" font-size="13" letter-spacing="2.6">MIDNIGHT MAINNET · VALIDATORS</text>
+    <text y="86" fill="#080808" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="700" letter-spacing="-4">The Validators that</text>
+    <text y="150" fill="#080808" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="700" letter-spacing="-4">Secure Midnight.</text>
+    <text y="205" fill="#080808" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700">Federated today, decentralization is next.</text>
+    <text y="237" fill="#696f78" font-family="Arial, Helvetica, sans-serif" font-size="17">A live, hourly view of the Midnight network.</text>
+  </g>
+  <g>
+    <circle cx="1020" cy="600" r="365" fill="#fff" stroke="#111" stroke-opacity=".18"/>
+    <circle cx="1020" cy="600" r="365" fill="url(#dots)"/>
+    <circle cx="1020" cy="600" r="365" fill="url(#fade)"/>
+  </g>
+  <g transform="translate(850 215)" filter="url(#shadow)">
+    <rect width="126" height="126" rx="28" fill="#fff" stroke="#111"/>
+    <circle cx="63" cy="63" r="42" fill="none" stroke="#050505" stroke-width="6"/>
+    <rect x="59.5" y="29" width="7" height="7" fill="#050505"/>
+    <rect x="59.5" y="40" width="7" height="7" fill="#050505"/>
+    <rect x="59.5" y="51" width="7" height="7" fill="#050505"/>
+  </g>
+  <g transform="translate(994 365)" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="middle">
+    <g><rect width="46" height="46" rx="13" fill="#fff" stroke="#111" stroke-opacity=".25"/><text x="23" y="31" fill="#ea553b">B</text></g>
+    <g transform="translate(56)"><rect width="46" height="46" rx="13" fill="#fff" stroke="#111" stroke-opacity=".25"/><text x="23" y="31" fill="#4285f4">G</text></g>
+    <g transform="translate(112)"><rect width="46" height="46" rx="13" fill="#fff" stroke="#111" stroke-opacity=".25"/><text x="23" y="31" fill="#00a36c">V</text></g>
+  </g>
+  <text x="64" y="592" fill="#686e77" font-family="monospace" font-size="12" letter-spacing="1.4">13 VALIDATORS · 12 ORGANIZATIONS · EUROPE</text>
+</svg>
