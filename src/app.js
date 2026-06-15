@@ -165,6 +165,7 @@ function mapLogoButton(node, index, validators) {
 }
 
 function validatorButton(node) {
+  const legendSubtitle = node.name === "aton-validator" ? "Alpha Compute" : locationLabel(node);
   return `
     <button class="validator-card ${node.online ? "" : "offline"}" data-name="${escapeHtml(node.name)}" type="button">
       <span class="logo-wrap" style="--accent:${node.accent}">
@@ -172,7 +173,7 @@ function validatorButton(node) {
       </span>
       <span class="validator-copy">
         <strong>${escapeHtml(node.organization)}</strong>
-        <small>${escapeHtml(locationLabel(node))}</small>
+        <small>${escapeHtml(legendSubtitle)}</small>
         <span class="validator-metric">${Number.isFinite(node.propagationMs) ? `${node.propagationMs}ms propagation` : "Propagation unavailable"}</span>
       </span>
       <span class="status-dot ${node.online ? "" : "offline"}"></span>
