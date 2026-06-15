@@ -29,7 +29,7 @@ export const VALIDATOR_MANIFEST = {
   },
   "mnf-validator-1": {
     organization: "Midnight Foundation",
-    logo: "midnight-foundation.svg",
+    logo: "midnight-foundation.png",
     accent: "#ffffff",
     priority: 1
   },
@@ -65,13 +65,13 @@ export const VALIDATOR_MANIFEST = {
   },
   "stl-validator-labrador-monarch": {
     organization: "Shielded Technologies",
-    logo: "midnight-foundation.svg",
+    logo: "midnight-foundation.png",
     accent: "#111111",
     priority: 12
   },
   "stl-validator-whippet-humpback": {
     organization: "Shielded Technologies",
-    logo: "midnight-foundation.svg",
+    logo: "midnight-foundation.png",
     accent: "#111111",
     priority: 12
   },

@@ -220,7 +220,7 @@ function visualLogo(node) {
     Blockdaemon: "blockdaemon.png",
     Bullish: "bullish.jpg",
     eToro: "etoro.png",
-    "Shielded Technologies": "midnight-foundation.svg"
+    "Shielded Technologies": "midnight-foundation.png"
   };
   return overrides[node.organization] ?? node.logo;
 }
