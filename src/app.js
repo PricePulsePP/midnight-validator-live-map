@@ -15,7 +15,8 @@ const state = {
   dragStartY: 0,
   dragStartPhi: 0,
   dragStartTheta: 0,
-  pinchDistance: null
+  pinchDistance: null,
+  autoRotate: true
 };
 
 document.querySelector("#app").innerHTML = `
@@ -32,7 +33,7 @@ document.querySelector("#app").innerHTML = `
       <section class="hero">
         <div class="eyebrow">MIDNIGHT MAINNET · LIVE VALIDATORS</div>
         <h1>The Validators that<br><em>Secure Midnight.</em></h1>
-        <p class="hero-subheadline">Federated today, decentralization is next.</p>
+        <p class="hero-subheadline">Federated today, decentralization is next, starting with Cardano SPOs.</p>
         <p class="hero-copy">A live, hourly view of the Midnight network.</p>
       </section>
 
@@ -42,6 +43,7 @@ document.querySelector("#app").innerHTML = `
           <div class="globe-halo"></div>
           <div class="globe-grid" aria-hidden="true"></div>
           <canvas id="globe" aria-label="Interactive globe centered on European validators"></canvas>
+          <svg class="globe-connectors" id="globe-connectors" aria-hidden="true"></svg>
           <div class="globe-labels" id="globe-labels"></div>
           <div class="globe-controls" aria-label="Globe controls">
             <button type="button" data-zoom="in" aria-label="Zoom in">+</button>
@@ -73,6 +75,7 @@ document.querySelector("#app").innerHTML = `
 
 const canvas = document.querySelector("#globe");
 const globeLabels = document.querySelector("#globe-labels");
+const globeConnectors = document.querySelector("#globe-connectors");
 const railLeft = document.querySelector("#rail-left");
 const railRight = document.querySelector("#rail-right");
 const detailsCard = document.querySelector("#details-card");
@@ -80,6 +83,22 @@ const detailsHeading = document.querySelector("#details-heading");
 
 let globe;
 let logoElements = [];
+let connectorElements = [];
+const legendOrder = [
+  "mnf-validator-1",
+  "sfi-validator-google",
+  "bkd-validator-mnf",
+  "twn-validator-etoro",
+  "sfi-validator-moneygram",
+  "sfi-validator-worldpay",
+  "sfi-validator-vodafone",
+  "aton-validator",
+  "bgo-validator",
+  "bkd-validator-bullish",
+  "stl-validator-labrador-monarch",
+  "stl-validator-whippet-humpback",
+  "ktg-validator"
+];
 
 loadSnapshot();
 
@@ -99,9 +118,17 @@ async function loadSnapshot() {
 }
 
 function render() {
-  const validators = state.snapshot.validators;
+  const validators = [...state.snapshot.validators].sort(
+    (a, b) => legendOrder.indexOf(a.name) - legendOrder.indexOf(b.name)
+  );
   const split = Math.ceil(validators.length / 2);
   globeLabels.innerHTML = validators.map(mapLogoButton).join("");
+  globeConnectors.innerHTML = validators.map((node) => `
+    <g data-connector="${escapeHtml(node.name)}">
+      <line></line>
+      <circle r="5"></circle>
+    </g>
+  `).join("");
   railLeft.innerHTML = validators.slice(0, split).map(validatorButton).join("");
   railRight.innerHTML = validators.slice(split).map(validatorButton).join("");
 
@@ -142,8 +169,8 @@ function mapLogoButton(node, index, validators) {
       type="button"
       aria-label="View ${escapeHtml(node.organization)} in ${escapeHtml(node.city)}"
     >
-      <span class="map-logo-image"><img src="./assets/logos/${escapeHtml(node.logo)}" alt=""></span>
-      <span class="map-logo-label"><strong>${escapeHtml(node.organization)}</strong><small>${escapeHtml(node.secondary ?? node.city)}</small></span>
+      <span class="map-logo-image"><img src="./assets/logos/${escapeHtml(visualLogo(node))}" alt=""></span>
+      <span class="map-logo-label"><strong>${escapeHtml(node.organization)}</strong><small>${escapeHtml(locationLabel(node))}</small></span>
     </button>
   `;
 }
@@ -152,11 +179,12 @@ function validatorButton(node) {
   return `
     <button class="validator-card ${node.online ? "" : "offline"}" data-name="${escapeHtml(node.name)}" type="button">
       <span class="logo-wrap" style="--accent:${node.accent}">
-        <img src="./assets/logos/${escapeHtml(node.logo)}" alt="">
+        <img src="./assets/logos/${escapeHtml(visualLogo(node))}" alt="">
       </span>
       <span class="validator-copy">
         <strong>${escapeHtml(node.organization)}</strong>
-        <small>${escapeHtml(node.secondary ?? node.city)}</small>
+        <small>${escapeHtml(locationLabel(node))}</small>
+        <span class="validator-metric">${Number.isFinite(node.propagationMs) ? `${node.propagationMs}ms propagation` : "Propagation unavailable"}</span>
       </span>
       <span class="status-dot ${node.online ? "" : "offline"}"></span>
     </button>
@@ -179,6 +207,28 @@ function markerId(node) {
   return node.name.replaceAll(/[^a-zA-Z0-9_-]/g, "-");
 }
 
+function locationLabel(node) {
+  const countries = {
+    Amsterdam: "Netherlands",
+    Brussels: "Belgium",
+    "City of London": "United Kingdom",
+    Dublin: "Ireland",
+    "Frankfurt am Main": "Germany",
+    Gravelines: "France",
+    Groningen: "Netherlands",
+    Stockholm: "Sweden"
+  };
+  return `${node.city}, ${countries[node.city] ?? "Country unavailable"}`;
+}
+
+function identityLabel(node) {
+  return node.organization === "Shielded Technologies" ? locationLabel(node) : (node.secondary ?? node.name);
+}
+
+function visualLogo(node) {
+  return node.organization === "Shielded Technologies" ? "midnight-foundation.svg" : node.logo;
+}
+
 function bindValidatorButtons() {
   document.querySelectorAll("[data-name]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -197,13 +247,13 @@ function renderDetails() {
   detailsCard.innerHTML = `
     <div class="detail-identity">
       <span class="logo-wrap large" style="--accent:${node.accent}">
-        <img src="./assets/logos/${escapeHtml(node.logo)}" alt="">
+        <img src="./assets/logos/${escapeHtml(visualLogo(node))}" alt="">
       </span>
-      <div><strong>${escapeHtml(node.organization)}</strong><span>${escapeHtml(node.secondary ?? node.name)}</span></div>
+      <div><strong>${escapeHtml(node.organization)}</strong><span>${escapeHtml(identityLabel(node))}</span></div>
       <span class="status-pill ${node.online ? "" : "offline"}">${node.online ? "Online" : "Offline"}</span>
     </div>
     <dl>
-      ${detail("Location", node.city)}
+      ${detail("Location", locationLabel(node))}
       ${detail("Node", node.name)}
       ${detail("Propagation", Number.isFinite(node.propagationMs) ? `${node.propagationMs}ms` : "—")}
       ${detail("Peers", node.peers ?? "—")}
@@ -220,14 +270,6 @@ function detail(label, value) {
 }
 
 function initGlobe() {
-  const markers = state.snapshot.validators
-    .filter((node) => node.online && Number.isFinite(node.lat) && Number.isFinite(node.lon))
-    .map((node) => ({
-      location: [node.lat, node.lon],
-      size: 0.052,
-      id: markerId(node),
-      color: hexToRgb(node.accent)
-    }));
   const arcs = state.snapshot.validators
     .filter((node) => node.online && Number.isFinite(node.lat) && Number.isFinite(node.lon))
     .slice(1)
@@ -260,7 +302,7 @@ function initGlobe() {
     baseColor: [1, 1, 1],
     markerColor: [0.2, 0.55, 1],
     glowColor: [0.82, 0.86, 0.94],
-    markers,
+    markers: [],
     arcs,
     arcColor: [0.18, 0.4, 0.95],
     arcWidth: 0.45,
@@ -272,9 +314,14 @@ function initGlobe() {
     element,
     node: state.snapshot.validators.find((node) => node.name === element.dataset.name)
   }));
+  connectorElements = [...globeConnectors.querySelectorAll("[data-connector]")].map((element) => ({
+    element,
+    node: state.snapshot.validators.find((node) => node.name === element.dataset.connector)
+  }));
   requestAnimationFrame(renderGlobeFrame);
 
   canvas.addEventListener("pointerdown", (event) => {
+    state.autoRotate = false;
     state.dragging = true;
     state.dragStartX = event.clientX;
     state.dragStartY = event.clientY;
@@ -296,6 +343,7 @@ function initGlobe() {
   canvas.addEventListener("pointerup", stopDragging);
   canvas.addEventListener("pointercancel", stopDragging);
   canvas.addEventListener("wheel", (event) => {
+    state.autoRotate = false;
     event.preventDefault();
     setZoom(state.targetScale - event.deltaY * 0.0012);
   }, { passive: false });
@@ -319,6 +367,9 @@ function initGlobe() {
 
 function renderGlobeFrame() {
   if (!state.dragging) {
+    if (state.autoRotate) {
+      state.targetPhi += 0.00045;
+    }
     state.phi += (state.targetPhi - state.phi) * 0.035;
     state.theta += (state.targetTheta - state.theta) * 0.035;
     state.scale += (state.targetScale - state.scale) * 0.08;
@@ -361,6 +412,7 @@ function updateLogoPositions() {
   const width = canvas.clientWidth;
   const height = canvas.clientHeight;
   if (!width || !height) return;
+  globeConnectors.setAttribute("viewBox", `0 0 ${width} ${height}`);
   for (const { element, node } of logoElements) {
     if (!Number.isFinite(node.lat) || !Number.isFinite(node.lon)) {
       element.style.opacity = "0";
@@ -370,6 +422,21 @@ function updateLogoPositions() {
     element.style.left = `${point.x}px`;
     element.style.top = `${point.y}px`;
     element.style.setProperty("--visible", point.visible ? "1" : "0");
+  }
+  for (const { element, node } of connectorElements) {
+    const point = projectLocation(node.lat, node.lon, width, height);
+    const logo = logoElements.find((item) => item.node.name === node.name)?.element;
+    const offsetX = Number.parseFloat(getComputedStyle(logo).getPropertyValue("--pin-x")) || 0;
+    const offsetY = Number.parseFloat(getComputedStyle(logo).getPropertyValue("--pin-y")) || 0;
+    const line = element.querySelector("line");
+    const anchor = element.querySelector("circle");
+    line.setAttribute("x1", point.x);
+    line.setAttribute("y1", point.y);
+    line.setAttribute("x2", point.x + offsetX);
+    line.setAttribute("y2", point.y + offsetY);
+    anchor.setAttribute("cx", point.x);
+    anchor.setAttribute("cy", point.y);
+    element.style.opacity = point.visible ? "1" : "0";
   }
 }
 

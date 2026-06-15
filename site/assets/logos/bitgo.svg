@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#111"/><path fill="#55F5A5" d="M14 14h22c10 0 15 5 15 12 0 4-2 7-6 9 5 2 7 6 7 10 0 9-7 13-17 13H14V14Zm12 10v8h9c3 0 5-1 5-4s-2-4-5-4h-9Zm0 18v7h10c3 0 5-1 5-4 0-2-2-3-5-3H26Z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#fff"/>
+  <path d="M32 5 52 12v15c0 14-8 23-20 29C20 50 12 41 12 27V12Z" fill="#1769e0"/>
+  <text x="32" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="22" fill="#fff">₿</text>
+  <text x="32" y="49" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="#fff">BitGo</text>
+</svg>

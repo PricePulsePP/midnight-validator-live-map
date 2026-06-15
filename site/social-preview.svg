@@ -35,7 +35,7 @@
     <text fill="#3159ad" font-family="monospace" font-size="13" letter-spacing="2.6">MIDNIGHT MAINNET · VALIDATORS</text>
     <text y="86" fill="#080808" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="700" letter-spacing="-4">The Validators that</text>
     <text y="150" fill="#080808" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="700" letter-spacing="-4">Secure Midnight.</text>
-    <text y="205" fill="#080808" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700">Federated today, decentralization is next.</text>
+    <text y="205" fill="#080808" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Federated today, decentralization is next, starting with Cardano SPOs.</text>
     <text y="237" fill="#696f78" font-family="Arial, Helvetica, sans-serif" font-size="17">A live, hourly view of the Midnight network.</text>
   </g>
   <g>

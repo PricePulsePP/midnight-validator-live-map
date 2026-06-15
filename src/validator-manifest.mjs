@@ -7,13 +7,13 @@ export const VALIDATOR_MANIFEST = {
     secondary: "Alpha Compute",
     logo: "telegram.svg",
     accent: "#2aabee",
-    priority: 4
+    priority: 8
   },
   "bgo-validator": {
     organization: "BitGo",
     logo: "bitgo.svg",
     accent: "#5df1a1",
-    priority: 5
+    priority: 10
   },
   "bkd-validator-mnf": {
     organization: "Blockdaemon",
@@ -25,63 +25,61 @@ export const VALIDATOR_MANIFEST = {
     organization: "Bullish",
     logo: "bullish.svg",
     accent: "#ff7a45",
-    priority: 5
+    priority: 11
   },
   "mnf-validator-1": {
     organization: "Midnight Foundation",
     logo: "midnight-foundation.svg",
     accent: "#ffffff",
-    priority: 2
+    priority: 1
   },
   "ktg-validator": {
     organization: "KTG",
     logo: "ktg.svg",
     accent: "#e5e7eb",
-    priority: 6
+    priority: 13
   },
   "sfi-validator-google": {
     organization: "Google Cloud",
     logo: "google-cloud.svg",
     accent: "#4285f4",
-    priority: 4
+    priority: 2
   },
   "sfi-validator-moneygram": {
     organization: "MoneyGram",
     logo: "moneygram.svg",
     accent: "#ff3f64",
-    priority: 4
+    priority: 7
   },
   "sfi-validator-vodafone": {
     organization: "Vodafone",
     logo: "vodafone.svg",
     accent: "#e60000",
-    priority: 4
+    priority: 9
   },
   "sfi-validator-worldpay": {
     organization: "Worldpay",
     logo: "worldpay.svg",
     accent: "#ff3d8d",
-    priority: 4
+    priority: 6
   },
   "stl-validator-labrador-monarch": {
     organization: "Shielded Technologies",
-    secondary: "Labrador Monarch",
-    logo: "shielded.svg",
-    accent: "#61e5d0",
-    priority: 5
+    logo: "midnight-foundation.svg",
+    accent: "#111111",
+    priority: 12
   },
   "stl-validator-whippet-humpback": {
     organization: "Shielded Technologies",
-    secondary: "Whippet Humpback",
-    logo: "shielded.svg",
-    accent: "#61e5d0",
-    priority: 5
+    logo: "midnight-foundation.svg",
+    accent: "#111111",
+    priority: 12
   },
   "twn-validator-etoro": {
     organization: "eToro",
     logo: "etoro.svg",
     accent: "#6bd400",
-    priority: 4
+    priority: 5
   }
 };
 

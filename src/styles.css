@@ -57,6 +57,10 @@ h1 em { font-style: normal; color: #555b65; }
   opacity: .48; mix-blend-mode: multiply; animation: grid-breathe 4s ease-in-out infinite;
 }
 .globe-labels { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.globe-connectors { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.globe-connectors line { stroke: #111; stroke-width: 1.25; stroke-opacity: .7; }
+.globe-connectors circle { fill: #fff; stroke: #111; stroke-width: 2; }
+.globe-connectors g { transition: opacity .2s; }
 .map-logo {
   position: absolute; left: 50%; top: 50%;
   transform: translate(calc(-50% + var(--pin-x)), calc(-50% + var(--pin-y))) scale(calc(.72 + var(--visible) * .28));
@@ -90,7 +94,7 @@ h1 em { font-style: normal; color: #555b65; }
 .validator-rail { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 7; }
 .rail-left .validator-card { margin-left: auto; text-align: right; flex-direction: row-reverse; }
 .validator-card {
-  width: min(100%, 245px); min-height: 57px; border: 1px solid #00000018;
+  width: min(100%, 245px); min-height: 68px; border: 1px solid #00000018;
   background: linear-gradient(135deg, #ffffffed, #f5f6f8ed); border-radius: 13px;
   display: flex; align-items: center; gap: 10px; padding: 8px 10px; cursor: pointer;
   transition: border-color .2s, transform .2s, background .2s, box-shadow .2s; text-align: left;
@@ -103,6 +107,7 @@ h1 em { font-style: normal; color: #555b65; }
 .validator-copy strong, .validator-copy small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .validator-copy strong { font-size: 11px; font-weight: 600; }
 .validator-copy small { margin-top: 4px; color: #69707a; font: 8px "Space Mono"; text-transform: uppercase; }
+.validator-metric { display: block; margin-top: 4px; color: #3159ad; font: 7px "Space Mono"; text-transform: uppercase; }
 .status-dot { flex: 0 0 auto; width: 5px; height: 5px; background: #0a9b61; border-radius: 50%; box-shadow: 0 0 7px #25c98688; }
 .status-dot.offline { background: #777; box-shadow: none; }
 .logo-wrap {
@@ -154,8 +159,8 @@ footer a { color: #404650; text-decoration: none; }
   .hero { padding-top: 45px; }
   .map-section { display: flex; flex-direction: column; min-height: auto; padding: 0 14px 40px; }
   .globe-stage { width: 125vw; order: 0; }
-  .validator-rail { order: 1; width: 100%; grid-template-columns: repeat(2, 1fr); }
-  .validator-card { min-height: 52px; }
+  .validator-rail { order: 1; width: 100%; grid-template-columns: 1fr; }
+  .validator-card { min-height: 68px; }
   .validator-card .logo-wrap { width: 32px; height: 32px; }
   .map-logo-image { width: 35px; height: 35px; border-radius: 10px; }
   .map-logo.selected .map-logo-label { display: none; }
