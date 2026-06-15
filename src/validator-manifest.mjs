@@ -11,7 +11,7 @@ export const VALIDATOR_MANIFEST = {
   },
   "bgo-validator": {
     organization: "BitGo",
-    logo: "bitgo.svg",
+    logo: "bitgo.png",
     accent: "#5df1a1",
     priority: 10
   },
@@ -23,7 +23,7 @@ export const VALIDATOR_MANIFEST = {
   },
   "bkd-validator-bullish": {
     organization: "Bullish",
-    logo: "bullish.svg",
+    logo: "bullish.jpg",
     accent: "#ff7a45",
     priority: 11
   },

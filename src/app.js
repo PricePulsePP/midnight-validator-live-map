@@ -31,7 +31,6 @@ document.querySelector("#app").innerHTML = `
 
     <main>
       <section class="hero">
-        <div class="eyebrow">MIDNIGHT MAINNET · LIVE VALIDATORS</div>
         <h1>The Validators that<br><em>Secure Midnight.</em></h1>
         <p class="hero-subheadline">Federated today, decentralization is next, starting with Cardano SPOs.</p>
         <p class="hero-copy">A live, hourly view of the Midnight network.</p>
@@ -127,7 +126,6 @@ function render() {
   globeLabels.innerHTML = validators.map(mapLogoButton).join("");
   globeConnectors.innerHTML = validators.map((node) => `
     <g data-connector="${escapeHtml(node.name)}">
-      <line></line>
       <circle r="5"></circle>
     </g>
   `).join("");
@@ -229,7 +227,9 @@ function identityLabel(node) {
 
 function visualLogo(node) {
   const overrides = {
+    BitGo: "bitgo.png",
     Blockdaemon: "blockdaemon.png",
+    Bullish: "bullish.jpg",
     eToro: "etoro.png",
     "Shielded Technologies": "midnight-foundation.svg"
   };
@@ -435,12 +435,7 @@ function updateLogoPositions() {
     const logo = logoElements.find((item) => item.node.name === node.name)?.element;
     const offsetX = Number.parseFloat(getComputedStyle(logo).getPropertyValue("--pin-x")) || 0;
     const offsetY = Number.parseFloat(getComputedStyle(logo).getPropertyValue("--pin-y")) || 0;
-    const line = element.querySelector("line");
     const anchor = element.querySelector("circle");
-    line.setAttribute("x1", point.x);
-    line.setAttribute("y1", point.y);
-    line.setAttribute("x2", point.x + offsetX);
-    line.setAttribute("y2", point.y + offsetY);
     anchor.setAttribute("cx", point.x);
     anchor.setAttribute("cy", point.y);
     element.style.opacity = point.visible ? "1" : "0";
