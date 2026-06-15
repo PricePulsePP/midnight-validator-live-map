@@ -140,16 +140,19 @@ footer a { color: #404650; text-decoration: none; }
 }
 
 @media (max-width: 680px) {
-  .hero { padding-top: 34px; }
-  .map-section { display: flex; flex-direction: column; min-height: auto; padding: 0 14px 40px; }
-  .globe-stage { width: 125vw; order: 0; }
+  .hero { padding: 24px 14px 12px; }
+  .hero-copy { margin-bottom: 0; }
+  .map-section { display: flex; flex-direction: column; min-height: auto; padding: 0 14px 24px; }
+  .globe-stage { width: 100vw; order: 0; max-height: 470px; margin-bottom: -8px; }
+  #globe, .globe-grid { max-width: 470px; }
+  .globe-labels, .globe-connectors { inset: 0; }
   .validator-rail { order: 1; width: 100%; grid-template-columns: 1fr; }
   .validator-card { min-height: 68px; }
   .validator-card .logo-wrap { width: 32px; height: 32px; }
   .map-logo-image { width: 35px; height: 35px; border-radius: 10px; }
   .map-logo.selected .map-logo-label { display: none; }
-  .globe-controls { right: 22%; bottom: 5%; }
-  .globe-caption { max-width: 260px; text-align: center; line-height: 1.7; }
+  .globe-controls { right: 8%; bottom: 3%; }
+  .globe-caption { max-width: 260px; text-align: center; line-height: 1.5; margin-top: -14px; }
   .stats { margin: 0 14px; grid-template-columns: repeat(2, 1fr); }
   .stat:nth-child(2n) { border-right: 0; }
   .details-section { padding: 55px 14px 65px; display: block; }
