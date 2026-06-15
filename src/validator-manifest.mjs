@@ -17,7 +17,7 @@ export const VALIDATOR_MANIFEST = {
   },
   "bkd-validator-mnf": {
     organization: "Blockdaemon",
-    logo: "blockdaemon.svg",
+    logo: "blockdaemon.png",
     accent: "#745cff",
     priority: 3
   },
@@ -77,7 +77,7 @@ export const VALIDATOR_MANIFEST = {
   },
   "twn-validator-etoro": {
     organization: "eToro",
-    logo: "etoro.svg",
+    logo: "etoro.png",
     accent: "#6bd400",
     priority: 5
   }

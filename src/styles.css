@@ -78,6 +78,8 @@ h1 em { font-style: normal; color: #555b65; }
   backdrop-filter: blur(14px);
 }
 .map-logo:hover, .map-logo:focus-visible, .map-logo.selected { z-index: 8; }
+.map-logo.top-layer { z-index: 7; }
+.map-logo.top-layer.selected { z-index: 9; }
 .map-logo:hover .map-logo-label, .map-logo:focus-visible .map-logo-label, .map-logo.selected .map-logo-label { display: block; }
 .map-logo-label strong, .map-logo-label small { display: block; }
 .map-logo-label strong { font-size: 10px; }

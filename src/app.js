@@ -4,8 +4,8 @@ import "./styles.css";
 const state = {
   snapshot: null,
   selected: null,
-  phi: -1.42,
-  targetPhi: -1.42,
+  phi: -1.78,
+  targetPhi: -1.78,
   theta: 0.7,
   targetTheta: 0.7,
   scale: 1.38,
@@ -85,8 +85,8 @@ let globe;
 let logoElements = [];
 let connectorElements = [];
 const legendOrder = [
-  "mnf-validator-1",
   "sfi-validator-google",
+  "mnf-validator-1",
   "bkd-validator-mnf",
   "twn-validator-etoro",
   "sfi-validator-moneygram",
@@ -107,7 +107,9 @@ async function loadSnapshot() {
     const response = await fetch(`./validators.json?refresh=${Date.now()}`, { cache: "no-cache" });
     if (!response.ok) throw new Error(`Snapshot request returned ${response.status}`);
     state.snapshot = await response.json();
-    state.selected = state.snapshot.validators[0];
+    state.selected =
+      state.snapshot.validators.find((node) => node.name === "sfi-validator-google") ??
+      state.snapshot.validators[0];
     render();
     initGlobe();
   } catch (error) {
@@ -163,7 +165,7 @@ function mapLogoButton(node, index, validators) {
   const offset = logoOffset(index, validators.length);
   return `
     <button
-      class="map-logo ${node.online ? "" : "offline"}"
+      class="map-logo ${node.name === "sfi-validator-google" ? "top-layer" : ""} ${node.online ? "" : "offline"}"
       data-name="${escapeHtml(node.name)}"
       style="--pin-x:${offset.x}px;--pin-y:${offset.y}px;--accent:${node.accent}"
       type="button"
@@ -226,7 +228,12 @@ function identityLabel(node) {
 }
 
 function visualLogo(node) {
-  return node.organization === "Shielded Technologies" ? "midnight-foundation.svg" : node.logo;
+  const overrides = {
+    Blockdaemon: "blockdaemon.png",
+    eToro: "etoro.png",
+    "Shielded Technologies": "midnight-foundation.svg"
+  };
+  return overrides[node.organization] ?? node.logo;
 }
 
 function bindValidatorButtons() {
@@ -386,7 +393,7 @@ function renderGlobeFrame() {
 }
 
 function resetGlobe() {
-  state.targetPhi = -1.42;
+  state.targetPhi = -1.78;
   state.targetTheta = 0.7;
   state.targetScale = 1.38;
 }
