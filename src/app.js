@@ -15,20 +15,11 @@ const state = {
   dragStartY: 0,
   dragStartPhi: 0,
   dragStartTheta: 0,
-  pinchDistance: null,
-  autoRotate: true
+  pinchDistance: null
 };
 
 document.querySelector("#app").innerHTML = `
   <div class="page-shell">
-    <header class="topbar">
-      <a class="brand" href="./" aria-label="Midnight Validator Live Map">
-        <span class="brand-mark"><img src="./assets/midnight-mark.svg" alt=""></span>
-        <span><strong>MIDNIGHT</strong><small>VALIDATOR LIVE MAP</small></span>
-      </a>
-      <div class="live-state"><span class="pulse"></span><span id="live-label">Loading telemetry</span></div>
-    </header>
-
     <main>
       <section class="hero">
         <h1>The Validators that<br><em>Secure Midnight.</em></h1>
@@ -112,7 +103,6 @@ async function loadSnapshot() {
     render();
     initGlobe();
   } catch (error) {
-    document.querySelector("#live-label").textContent = "Telemetry unavailable";
     detailsCard.innerHTML = `<p class="error">The validator snapshot is temporarily unavailable.</p>`;
     console.error(error);
   }
@@ -154,7 +144,6 @@ function render() {
     .map(([label, value]) => `<div class="stat"><strong>${value}</strong><span>${label}</span></div>`)
     .join("");
 
-  document.querySelector("#live-label").textContent = `${online.length} validators online`;
   bindValidatorButtons();
   renderDetails();
 }
@@ -328,7 +317,6 @@ function initGlobe() {
   requestAnimationFrame(renderGlobeFrame);
 
   canvas.addEventListener("pointerdown", (event) => {
-    state.autoRotate = false;
     state.dragging = true;
     state.dragStartX = event.clientX;
     state.dragStartY = event.clientY;
@@ -350,7 +338,6 @@ function initGlobe() {
   canvas.addEventListener("pointerup", stopDragging);
   canvas.addEventListener("pointercancel", stopDragging);
   canvas.addEventListener("wheel", (event) => {
-    state.autoRotate = false;
     event.preventDefault();
     setZoom(state.targetScale - event.deltaY * 0.0012);
   }, { passive: false });
@@ -374,9 +361,6 @@ function initGlobe() {
 
 function renderGlobeFrame() {
   if (!state.dragging) {
-    if (state.autoRotate) {
-      state.targetPhi += 0.00045;
-    }
     state.phi += (state.targetPhi - state.phi) * 0.035;
     state.theta += (state.targetTheta - state.theta) * 0.035;
     state.scale += (state.targetScale - state.scale) * 0.08;

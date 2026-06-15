@@ -16,24 +16,8 @@ button { color: inherit; }
   radial-gradient(circle at 50% 31%, rgba(37, 91, 204, .07), transparent 36%),
   linear-gradient(#fff, #f8f9fb 70%, #fff); }
 
-.topbar {
-  height: 74px; padding: 0 clamp(20px, 5vw, 72px); display: flex; align-items: center;
-  justify-content: space-between; border-bottom: 1px solid #00000016; position: relative; z-index: 5;
-}
-.brand { display: flex; align-items: center; gap: 12px; color: #090909; text-decoration: none; }
-.brand-mark {
-  display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #00000088;
-  border-radius: 50%; box-shadow: 0 0 25px #2d6dff22;
-}
-.brand-mark img { width: 23px; height: 23px; }
-.brand strong, .brand small { display: block; letter-spacing: .15em; }
-.brand strong { font-size: 12px; }
-.brand small { color: #6d727b; font-size: 8px; margin-top: 3px; }
-.live-state { display: flex; align-items: center; gap: 9px; color: #555b64; font: 10px "Space Mono"; text-transform: uppercase; }
-.pulse { width: 7px; height: 7px; background: #0a9b61; border-radius: 50%; box-shadow: 0 0 10px #25c98688; }
-
 main { width: min(1500px, 100%); margin: auto; }
-.hero { text-align: center; padding: 68px 20px 28px; position: relative; z-index: 2; }
+.hero { text-align: center; padding: 48px 20px 28px; position: relative; z-index: 2; }
 .eyebrow { color: #3159ad; letter-spacing: .2em; font: 10px "Space Mono"; }
 h1 { margin: 18px 0 16px; font-size: clamp(42px, 6vw, 82px); line-height: .98; letter-spacing: -.07em; font-weight: 600; }
 h1 em { font-style: normal; color: #555b65; }
@@ -156,8 +140,7 @@ footer a { color: #404650; text-decoration: none; }
 }
 
 @media (max-width: 680px) {
-  .topbar { height: 64px; }
-  .hero { padding-top: 45px; }
+  .hero { padding-top: 34px; }
   .map-section { display: flex; flex-direction: column; min-height: auto; padding: 0 14px 40px; }
   .globe-stage { width: 125vw; order: 0; }
   .validator-rail { order: 1; width: 100%; grid-template-columns: 1fr; }
