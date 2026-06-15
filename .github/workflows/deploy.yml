@@ -2,6 +2,12 @@ name: Refresh and deploy validator map
 
 on:
   workflow_dispatch:
+    inputs:
+      requested_by:
+        description: Source that requested this refresh
+        required: false
+        default: manual
+        type: string
   schedule:
     - cron: "19 * * * *"
   push:
