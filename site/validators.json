@@ -239,8 +239,8 @@
     },
     {
       "name": "ktg-validator",
-      "organization": "KTG",
-      "logo": "ktg.svg",
+      "organization": "Karatage.io",
+      "logo": "karatage.png",
       "accent": "#e5e7eb",
       "priority": 6,
       "validator": "5C7BVr5TnvwByknNeqLsTkMhVmNstAJr3uNrGLgyy4zkyWp9",

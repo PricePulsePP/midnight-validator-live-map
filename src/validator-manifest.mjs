@@ -34,8 +34,8 @@ export const VALIDATOR_MANIFEST = {
     priority: 1
   },
   "ktg-validator": {
-    organization: "KTG",
-    logo: "ktg.svg",
+    organization: "Karatage.io",
+    logo: "karatage.png",
     accent: "#e5e7eb",
     priority: 13
   },
