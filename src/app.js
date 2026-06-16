@@ -221,7 +221,7 @@ function visualLogo(node) {
     Blockdaemon: "blockdaemon.png",
     Bullish: "bullish.jpg",
     eToro: "etoro.png",
-    "Shielded Technologies": "midnight-foundation.png"
+    "Shielded Technologies": "shielded.jpg"
   };
   return overrides[node.organization] ?? node.logo;
 }
