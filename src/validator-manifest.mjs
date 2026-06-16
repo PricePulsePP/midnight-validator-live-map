@@ -29,7 +29,7 @@ export const VALIDATOR_MANIFEST = {
   },
   "mnf-validator-1": {
     organization: "Midnight Foundation",
-    logo: "shielded.jpg",
+    logo: "midnight-foundation.png",
     accent: "#ffffff",
     priority: 1
   },
@@ -71,7 +71,7 @@ export const VALIDATOR_MANIFEST = {
   },
   "stl-validator-whippet-humpback": {
     organization: "Shielded Technologies",
-    logo: "midnight-foundation.png",
+    logo: "shielded.jpg",
     accent: "#111111",
     priority: 12
   },
