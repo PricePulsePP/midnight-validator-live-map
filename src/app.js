@@ -216,6 +216,7 @@ function identityLabel(node) {
 }
 
 function visualLogo(node) {
+  if (node.name === "mnf-validator-1") return "midnight-foundation.png";
   const overrides = {
     BitGo: "bitgo.png",
     Blockdaemon: "blockdaemon.png",
